@@ -1,6 +1,8 @@
 import {useAppContext} from "./AppContext.jsx";
 import {useEffect, useState} from "react";
-
+import InfoCard from "./InfoCard.jsx";
+import {FaCalendar, FaClipboardList, FaExclamationTriangle, FaTasks} from "react-icons/fa";
+import {Row} from "react-bootstrap";
 function Dashboard() {
     const { selectedDate } = useAppContext();
     const [summary, setSummary] = useState({ processed: 0, failed: 0 });
@@ -24,24 +26,19 @@ function Dashboard() {
             <h2>Dashboard Summary</h2>
             <p><strong>Date:</strong> {selectedDate}</p>
 
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="card bg-success text-white">
-                        <div className="card-body">
-                            <h5 className="card-title">Processed Files</h5>
-                            <p className="card-text">{summary.processed}</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="card bg-danger text-white">
-                        <div className="card-body">
-                            <h5 className="card-title">Failed Files</h5>
-                            <p className="card-text">{summary.failed}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Row>
+                {/* Earnings Card */}
+                <InfoCard title="Earnings (Monthly)" value="$40,000" icon={FaCalendar} color="primary" />
+
+                {/* Tasks Card */}
+                <InfoCard title="Tasks" value="24" icon={FaClipboardList} color="success" />
+
+                {/* Pending Requests Card */}
+                <InfoCard title="Pending Requests" value="8" icon={FaExclamationTriangle} color="warning" />
+
+                {/* Completed Tasks Card */}
+                <InfoCard title="Completed Tasks" value="56" icon={FaTasks} color="danger" />
+            </Row>
         </div>
     );
 }
