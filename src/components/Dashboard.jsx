@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import InfoCard from "./InfoCard.jsx";
 import {FaCalendar, FaClipboardList, FaExclamationTriangle, FaTasks} from "react-icons/fa";
 import {Row} from "react-bootstrap";
-import {Container} from "@mui/material";
 import BarChart from "./BarChart.jsx";
 
 function Dashboard() {

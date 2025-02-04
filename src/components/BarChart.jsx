@@ -1,10 +1,4 @@
-import React from "react";
-import { Card } from "react-bootstrap";
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Title } from "chart.js";
-
-// Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Title);
+import { Chart } from "primereact/chart";
 
 const BarChart = () => {
     const data = {
@@ -25,61 +19,24 @@ const BarChart = () => {
         maintainAspectRatio: false,
         scales: {
             x: {
-                grid: {
-                    display: false,
-                    drawBorder: false,
-                },
-                ticks: {
-                    maxTicksLimit: 6,
-                },
+                grid: { display: false },
+                ticks: { maxTicksLimit: 6 },
             },
             y: {
                 ticks: {
                     min: 0,
                     max: 15000,
-                    maxTicksLimit: 5,
-                    callback: function (value) {
-                        return `$${value.toLocaleString()}`;
-                    },
+                    callback: (value) => `$${value.toLocaleString()}`,
                 },
-                grid: {
-                    color: "rgb(234, 236, 244)",
-                    drawBorder: false,
-                    borderDash: [2],
-                    zeroLineBorderDash: [2],
-                },
+                grid: { borderDash: [2] },
             },
         },
         plugins: {
-            legend: {
-                display: false,
-            },
-            tooltip: {
-                callbacks: {
-                    label: function (tooltipItem) {
-                        return `Revenue: $${tooltipItem.raw.toLocaleString()}`;
-                    },
-                },
-            },
+            legend: { display: false },
         },
     };
 
-    return (
-        <div className="col-xl-12 col-md-12 mb-4">
-            <Card className="shadow">
-                <Card.Header className="py-3">
-                    <h6 className="m-0 font-weight-bold text-primary">Bar Chart</h6>
-                </Card.Header>
-                <Card.Body>
-                    <div className="chart-bar" style={{ height: "300px" }}>
-                        <Bar data={data} options={options} />
-                    </div>
-                    <hr />
-                    Styling for the bar chart follows Bootstrap guidelines.
-                </Card.Body>
-            </Card>
-        </div>
-    );
+    return <Chart type="bar" data={data} options={options} />;
 };
 
 export default BarChart;
