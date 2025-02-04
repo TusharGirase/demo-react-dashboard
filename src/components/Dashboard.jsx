@@ -3,9 +3,12 @@ import {useEffect, useState} from "react";
 import InfoCard from "./InfoCard.jsx";
 import {FaCalendar, FaClipboardList, FaExclamationTriangle, FaTasks} from "react-icons/fa";
 import {Row} from "react-bootstrap";
+import {Container} from "@mui/material";
+import BarChart from "./BarChart.jsx";
+
 function Dashboard() {
-    const { selectedDate } = useAppContext();
-    const [summary, setSummary] = useState({ processed: 0, failed: 0 });
+    const {selectedDate} = useAppContext();
+    const [summary, setSummary] = useState({processed: 0, failed: 0});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,16 +31,19 @@ function Dashboard() {
 
             <Row>
                 {/* Earnings Card */}
-                <InfoCard title="Earnings (Monthly)" value="$40,000" icon={FaCalendar} color="primary" />
+                <InfoCard title="Earnings (Monthly)" value="$40,000" icon={FaCalendar} color="primary"/>
 
                 {/* Tasks Card */}
-                <InfoCard title="Tasks" value="24" icon={FaClipboardList} color="success" />
+                <InfoCard title="Tasks" value="24" icon={FaClipboardList} color="success"/>
 
                 {/* Pending Requests Card */}
-                <InfoCard title="Pending Requests" value="8" icon={FaExclamationTriangle} color="warning" />
+                <InfoCard title="Pending Requests" value="8" icon={FaExclamationTriangle} color="warning"/>
 
                 {/* Completed Tasks Card */}
-                <InfoCard title="Completed Tasks" value="56" icon={FaTasks} color="danger" />
+                <InfoCard title="Completed Tasks" value="56" icon={FaTasks} color="danger"/>
+            </Row>
+            <Row>
+                <BarChart/>
             </Row>
         </div>
     );
